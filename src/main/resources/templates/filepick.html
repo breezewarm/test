@@ -1,17 +1,24 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Pick a file and run</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+<title>Pick a file and run</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-     <form method="POST" action="uploadFile" enctype="multipart/form-data">
-        File to upload: <input type="file" name="file" /><br /> 
-<!--         Name: <input type="text" name="name" /><br /> <br />  -->
-		<input type="number" name="colStartX"/><br/>
-		<input type="number" name="colEndX"/><br/>
-		<input type="number" name="colY"/><br/>
-        <input type="submit" value="Start">Start</input>
-    </form>
+	<div style="padding: 20px;">
+		<form method="POST" action="uploadFile" enctype="multipart/form-data">
+			File to upload: <input type="file" name="file" /><br />
+			<!--         Name: <input type="text" name="name" /><br /> <br />  -->
+			Starting row: <input type="number" name="startRow" /> <br />
+			Starting column: <input type="number" name="colStartX" /><br /> 
+			Ending column: <input type="number" name="colEndX" /><br /> 
+			Y column: <input type="number" name="colY" /><br /> 
+			<input type="submit" value="Start">Start</input>
+		</form>
+	</div>
+	<div>
+<!-- 		<p th:utext="'Here you go: &lt;br /&gt; ' + ${message} + '!'" /> -->
+		<p th:utext="'Here you go: &lt;br /&gt; ' + ${#strings.replace(#strings.escapeJava(message),'\n','&lt;br /&gt;')}" th:if="${message != null}"></p>
+	</div>
 </body>
 </html>
